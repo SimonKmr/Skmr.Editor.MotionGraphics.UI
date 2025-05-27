@@ -15,54 +15,20 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
     {
         public int Units { get; set; }
         protected override object Build()
-        => new StackPanel()
-        {
-            Background = new SolidColorBrush()
+        => new ScrollViewer()
+        { 
+            Content = new StackPanel()
             {
-                Color = new Color(255, 0x10, 0x10, 0x10)
-            },
-            Orientation = Avalonia.Layout.Orientation.Vertical,
-            Children =
-            {
-                new Track()
+                Background = new SolidColorBrush()
                 {
-                    Height = 13,
-                    Background = new SolidColorBrush()
-                    {
-                        Color = new Color(255, 0x05, 0x05, 0x05)
-                    },
-                    Margin = new Thickness(0,2,0,0),
-                    Children = new int[]{ 20, 40, }
+                    Color = new Color(255, 0x10, 0x10, 0x10)
                 },
-                new Track()
+                Orientation = Avalonia.Layout.Orientation.Vertical,
+                Children =
                 {
-                    Height = 13,
-                    Background = new SolidColorBrush()
-                    {
-                        Color = new Color(255, 0x05, 0x05, 0x05)
-                    },
-                    Margin = new Thickness(0,2,0,0),
-                    Children = new int[]{ 100, 160, }
-                },
-                new Track()
-                {
-                    Height = 13,
-                    Background = new SolidColorBrush()
-                    {
-                        Color = new Color(255, 0x05, 0x05, 0x05)
-                    },
-                    Margin = new Thickness(0,2,0,0),
-                    Children = new int[]{ 240, 300, }
-                },
-                new Track()
-                {
-                    Height = 13,
-                    Background = new SolidColorBrush()
-                    {
-                        Color = new Color(255, 0x05, 0x05, 0x05)
-                    },
-                    Margin = new Thickness(0,2,0,0),
-                    Children = new int[]{ 23, 43, }
+                    new TimelinePanel(new TimelinePanelViewModel("position",300,new int[] { 30, 35, 110, 125, 200, 299 })){Margin = new Thickness(0,2,0,0)},
+                    new TimelinePanel(new TimelinePanelViewModel("resolution",300,new int[] { 0,20,60,80 })){Margin = new Thickness(0,2,0,0)},
+                    new TimelinePanel(new TimelinePanelViewModel("color",300,new int[] { 5,65 })){Margin = new Thickness(0,2,0,0)},
                 },
             }
         };

@@ -11,20 +11,16 @@ using System.Threading.Tasks;
 
 namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
 {
-    internal class Track : Control
+    public class Track : Control
     {
         //https://docs.avaloniaui.net/docs/guides/custom-controls/draw-with-a-property
-        public new IEnumerable<int> Children { get; set; } = new int[] { 20, 40, };
+        public new IEnumerable<int> Keyframes { get; set; } = new int[0];
         public int Length { get; set; } = 300;
         public int FramesPerSecond { get; set; } = 30;
         public IBrush? Background { get; set; }
 
         public sealed override void Render(DrawingContext context)
         {
-
-
-            
-
             context.FillRectangle(Background, new Rect(Bounds.Size));
 
             DrawKeyframes(context);
@@ -41,17 +37,27 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
             var h = Bounds.Height;
             var u = w / Length;
             var xOffset = u / 2;
+            
             for (var i = 0; i < Length ; i++)
             {
-
-                IPen brush = i % FramesPerSecond == 0 ? 
-                    new Pen(new SolidColorBrush(new Color(100, 255, 255, 255))) :
-                    new Pen(new SolidColorBrush(new Color(50, 255, 255, 255)));
                 var x = u * i + xOffset;
                 var p1 = new Point(x, 0);
-                var p2 = i % FramesPerSecond == 0 ? new Point(x, h/3) : new Point(x, h / 8);
+                
+                IPen brush;
+                Point p2;
 
-                context.DrawLine(brush,p1,p2);
+                if (i % FramesPerSecond == 0)
+                {
+                    brush = new Pen(new SolidColorBrush(new Color(100, 255, 255, 255)));
+                    p2 = new Point(x, h / 3);
+                }
+                else
+                {
+                    brush = new Pen(new SolidColorBrush(new Color(50, 255, 255, 255)));
+                    p2 = new Point(x, h / 8);
+                }
+
+                context.DrawLine(brush, p1, p2);
             }
         }
 
@@ -62,7 +68,7 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
             var h = Bounds.Height;
             var u = w / Length;
 
-            var children = Children.ToArray();
+            var children = Keyframes.ToArray();
             var r = u / 2;
             for (int i = 0; i < children.Length; i++)
             {
@@ -70,7 +76,6 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
                 var rect = new Rect(x, 3, u, h-3);
                 var p = new Point(x + r, h / 2);
                 context.DrawEllipse(brush, null, p, r , u / 2);
-                //context.DrawRectangle(brush, null, rect);
             }
         }
     }

@@ -1,28 +1,56 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using System;
+﻿using Avalonia.Controls;
+using Avalonia.Markup.Declarative;
+using Avalonia.Media;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
 {
-    internal class TimelinePanel : Panel
+    public class TimelinePanel : ComponentBase<TimelinePanelViewModel>
     {
-        public int Tracks { get; set; }
-        public int Length { get; set; }
-
-        public new IEnumerable<Track> Children { get; set; }
-
-        protected override Size ArrangeOverride(Size finalSize)
+        public TimelinePanel(TimelinePanelViewModel viewModel) : base(viewModel)
         {
-            return base.ArrangeOverride(finalSize);
         }
 
-        protected override Size MeasureOverride(Size availableSize)
+        protected override object Build(TimelinePanelViewModel? vm)
         {
-            return base.MeasureOverride(availableSize);
+            var grid = new Grid()
+            {
+                ColumnDefinitions = new ColumnDefinitions()
+                {
+                    new ColumnDefinition(100,GridUnitType.Pixel),
+                    new ColumnDefinition(1,GridUnitType.Pixel),
+                    new ColumnDefinition(1,GridUnitType.Star),
+                }
+            };
+
+            var label = new Label()
+            {
+                Content = @vm.Name
+            };
+
+            var border = new Border()
+            {
+                Child = label,
+                Background = new SolidColorBrush()
+                {
+                    Color = new Color(255, 0x05, 0x05, 0x05)
+                }
+            };
+
+            var track = new Track()
+            {
+                Background = new SolidColorBrush()
+                {
+                    Color = new Color(255, 0x05, 0x05, 0x05)
+                },
+                Length = @vm.Length,
+                Keyframes = @vm.Keyframes,
+            };
+
+            grid.Children.Add(border.Col(0));
+            grid.Children.Add(track.Col(2));
+
+            return grid;
         }
     }
 }
