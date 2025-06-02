@@ -73,7 +73,7 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
             var u = w / Length;
 
             var children = Keyframes.ToArray();
-            var r = u / 2;
+            var r = Math.Min(u / 2, h * 2 / 3);
             for (int i = 0; i < children.Length; i++)
             {
                 if (children[i] > Start + Length && children[i] <= Start) continue;
@@ -81,7 +81,7 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
                 var x = u * (double)children[i];
                 var rect = new Rect(x, 3, u, h-3);
                 var p = new Point(x + r, h / 2);
-                context.DrawEllipse(brush, null, p, r , u / 2);
+                context.DrawEllipse(brush, null, p, r , r);
             }
         }
     }
