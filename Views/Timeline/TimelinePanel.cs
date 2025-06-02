@@ -43,8 +43,10 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
                 {
                     Color = new Color(255, 0x05, 0x05, 0x05)
                 },
-                Length = @vm.Length,
+                TotalFrames = @vm.TotalLength,
                 Keyframes = @vm.Keyframes,
+                Start = @vm.Start,
+                Length = @vm.Length,
             };
 
             grid.Children.Add(border.Col(0));

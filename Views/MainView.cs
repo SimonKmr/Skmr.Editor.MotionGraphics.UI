@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Declarative;
 using Avalonia.Media;
+using Skmr.Editor.MotionGraphics.Elements;
 using Skmr.Editor.MotionGraphics.UI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -54,29 +55,14 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
                         },
                     }.Row(0).ColSpan(7),
                     
-                    new Panel()
-                    {
+                    new ElementListControl().Row(2).Col(0),
 
-                        Background = new SolidColorBrush()
-                        {
-                            Color = new Color(255, 0x10, 0x10, 0x10)
-                        },
-                    }.Row(2).Col(0),
-
-                    new Panel()
-                    {
-
-                        Background = new SolidColorBrush()
-                        {
-                            Color = new Color(255, 0x10, 0x10, 0x10)
-                        },
-                    }.Row(2).Col(2),
+                    new ElementControl(new Gradient()).Row(2).Col(2),
 
                     GetPreviewControl(),
 
                     new Panel()
                     {
-
                         Background = new SolidColorBrush()
                         {
                             Color = new Color(255, 0x10, 0x10, 0x10)

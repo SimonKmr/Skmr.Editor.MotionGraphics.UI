@@ -26,7 +26,14 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SDL3-CS" Version="3.2.14.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Skmr.Editor.MotionGraphics">
+      <HintPath>..\SimonKmr\Skmr.Editor\src\Skmr.Editor.MotionGraphics\bin\Release\net8.0\Skmr.Editor.MotionGraphics.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

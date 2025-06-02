@@ -15,7 +15,11 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
     {
         //https://docs.avaloniaui.net/docs/guides/custom-controls/draw-with-a-property
         public new IEnumerable<int> Keyframes { get; set; } = new int[0];
-        public int Length { get; set; } = 300;
+
+        public int Start { get; set; } = 0;
+        public int Length { get; set; } = 150;
+
+        public int TotalFrames { get; set; } = 300;
         public int FramesPerSecond { get; set; } = 30;
         public IBrush? Background { get; set; }
 
@@ -38,7 +42,7 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
             var u = w / Length;
             var xOffset = u / 2;
             
-            for (var i = 0; i < Length ; i++)
+            for (var i = Start; i < Start + Length ; i++)
             {
                 var x = u * i + xOffset;
                 var p1 = new Point(x, 0);
@@ -72,6 +76,8 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
             var r = u / 2;
             for (int i = 0; i < children.Length; i++)
             {
+                if (children[i] > Start + Length && children[i] <= Start) continue;
+
                 var x = u * (double)children[i];
                 var rect = new Rect(x, 3, u, h-3);
                 var p = new Point(x + r, h / 2);
