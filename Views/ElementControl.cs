@@ -30,6 +30,11 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
                 Color = new Color(255, 0x10, 0x10, 0x10)
             };
 
+            var lightGray = new SolidColorBrush()
+            {
+                Color = new Color(255, 0xC0, 0xC0, 0xC0)
+            };
+
             var sp = new StackPanel()
             {
                 Background = background
@@ -49,6 +54,7 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
                 {
                     Content = p.Name,
                     FontSize = 10,
+                    Foreground = lightGray,
                 });
             }
 

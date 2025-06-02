@@ -25,7 +25,8 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
 
             var label = new Label()
             {
-                Content = @vm.Name
+                Content = @vm.Name,
+                FontSize = 12,
             };
 
             var border = new Border()
