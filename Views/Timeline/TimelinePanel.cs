@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Declarative;
 using Avalonia.Media;
+using Skmr.Editor.MotionGraphics.UI.ViewModels;
 using System.Collections.Generic;
 
 namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline

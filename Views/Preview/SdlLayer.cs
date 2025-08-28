@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Skmr.Editor.MotionGraphics.UI.Views.Preview
 {
+    //Embeds the SDL Window into a Avalonia Control
     public class SdlLayer : IDisposable
     {
         private bool isResizeable = true;

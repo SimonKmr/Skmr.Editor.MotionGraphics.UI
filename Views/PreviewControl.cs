@@ -24,6 +24,13 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
             byte[] bytes = new byte[1920 * 1080 * 4];
             r.NextBytes(bytes);
             var w = Width;
+            for (int i = 0; i < bytes.Length; i+=4)
+            {
+                bytes[i + 0] = (byte)(255);
+                bytes[i + 1] = (byte)(0); //B
+                bytes[i + 2] = (byte)(0); //G
+                bytes[i + 3] = (byte)(255); //R
+            }
             window.Update(bytes, 1920, 1080);
             window.Render();
         }

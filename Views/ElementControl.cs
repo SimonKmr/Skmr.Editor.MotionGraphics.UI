@@ -1,30 +1,21 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Declarative;
 using Avalonia.Media;
-using Skmr.Editor.MotionGraphics.Elements;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Skmr.Editor.MotionGraphics.UI.ViewModels;
 
 namespace Skmr.Editor.MotionGraphics.UI.Views
 {
-    internal class ElementControl : ComponentBase
+    internal class ElementControl : ComponentBase<ElementViewModel>
     {
-        private IElement element;
-        public ElementControl(IElement element)
+        public ElementControl(ElementViewModel viewModel) : base(viewModel)
         {
-            this.element = element;
-        }
-        protected override void OnCreated()
-        {
-            this.element = new Gradient();
-            base.OnCreated();
+
         }
 
-        protected override object Build()
+        protected override object Build(ElementViewModel? vm)
         {
+            var element = vm.Element;
+
             var background = new SolidColorBrush()
             {
                 Color = new Color(255, 0x10, 0x10, 0x10)
@@ -39,9 +30,10 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
             {
                 Background = background
             };
+
             var name = element.GetType().Name;
             var properties = element.GetType().GetProperties();
-            
+
             sp.Children.Add(new Label()
             {
                 Content = name,
@@ -50,16 +42,29 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
 
             foreach (var p in properties)
             {
-                sp.Children.Add(new Label()
+                if (p.PropertyType.FullName.Contains("Skmr.Editor.Data.Vec2D"))
                 {
-                    Content = p.Name,
-                    FontSize = 10,
-                    Foreground = lightGray,
-                });
+                    sp.Children.Add(new Element.Vec2D(p.Name) {x = 1920, y = 1080});
+                }
+                else if (p.PropertyType.FullName.Contains("Skmr.Editor.Data.Colors.RGBA"))
+                {
+                    sp.Children.Add(new Element.RGBA() { R = 16, G = 16, B = 16, A = 255 });
+                }
+                else
+                {
+                    sp.Children.Add(new Label()
+                    {
+                        Content = p.Name,
+                        FontSize = 10,
+                        Foreground = lightGray,
+                    });
+                }
+
+
+
             }
 
             return sp;
-            
         }
     }
 }

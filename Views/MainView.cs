@@ -1,13 +1,8 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Declarative;
 using Avalonia.Media;
-using Skmr.Editor.MotionGraphics.Elements;
 using Skmr.Editor.MotionGraphics.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using skmr = Skmr.Editor.MotionGraphics;
 
 namespace Skmr.Editor.MotionGraphics.UI.Views
 {
@@ -48,7 +43,6 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
                 {
                     new Panel()
                     {
-                        
                         Background = new SolidColorBrush()
                         {
                             Color = new Color(255, 0x10, 0x10, 0x10)
@@ -57,7 +51,7 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
                     
                     new ElementListControl().Row(2).Col(0),
 
-                    new ElementControl(new Gradient()).Row(2).Col(2),
+                    new ElementControl(new ElementViewModel(){Element = new skmr.Elements.Solid() }).Row(2).Col(2),
 
                     GetPreviewControl(),
 
@@ -91,21 +85,26 @@ namespace Skmr.Editor.MotionGraphics.UI.Views
 
         private PreviewControl previewControl;
 
-        private PreviewControl GetPreviewControl()
+        private Control GetPreviewControl()
         {
-            var pc = new PreviewControl()
+            var grid = new Grid()
             {
+                RowDefinitions =
+                {
+                    new RowDefinition(1,GridUnitType.Star),
+                    new RowDefinition(20,GridUnitType.Pixel),
+
+                },
+
+                Children =
+                {
+                    new PreviewControl()
+                }
+
 
             }.Row(2).Col(4);
             
-            pc.KeyDown += (sender, e) =>
-            {
-                var s = sender as PreviewControl;
-                s.Update();
-            };
-            
-            previewControl = pc;
-            return pc;
+            return grid;
         }
     }
 }

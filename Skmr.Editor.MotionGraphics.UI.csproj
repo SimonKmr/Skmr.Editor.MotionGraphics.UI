@@ -12,6 +12,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
+    <Folder Include="Images\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Skmr.Editor.Data">
+      <HintPath>..\SimonKmr\Skmr.Editor\src\Skmr.Editor.MotionGraphics\bin\Release\net8.0\Skmr.Editor.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Skmr.Editor.MotionGraphics">
       <HintPath>..\SimonKmr\Skmr.Editor\src\Skmr.Editor.MotionGraphics\bin\Release\net8.0\Skmr.Editor.MotionGraphics.dll</HintPath>
     </Reference>

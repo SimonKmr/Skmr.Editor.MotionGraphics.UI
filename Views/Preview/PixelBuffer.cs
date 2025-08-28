@@ -8,6 +8,7 @@ using static SDL3.SDL;
 
 namespace Skmr.Editor.MotionGraphics.UI.Views.Preview
 {
+    //Creates a Window with SDL
     internal class PixelBuffer
     {
         private nint renderer;

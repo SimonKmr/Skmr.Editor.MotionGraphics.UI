@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Declarative;
 using Avalonia.Media;
+using Skmr.Editor.MotionGraphics.UI.ViewModels;
 using Skmr.Editor.MotionGraphics.UI.Views.Timeline;
 using System;
 using System.Collections.Generic;

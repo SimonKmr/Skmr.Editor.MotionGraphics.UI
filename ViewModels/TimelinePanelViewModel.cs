@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
+namespace Skmr.Editor.MotionGraphics.UI.ViewModels
 {
     public class TimelinePanelViewModel
     {
@@ -20,7 +20,7 @@ namespace Skmr.Editor.MotionGraphics.UI.Views.Timeline
             Name = name;
             TotalLength = totalLength;
             Keyframes = keyframes;
-            
+
             Start = start;
             Length = length;
         }
